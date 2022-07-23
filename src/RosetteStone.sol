@@ -13,7 +13,7 @@ contract RosetteStone is TimeHelpers {
 
     struct Entry {
         uint64 upsertAt; // Blocktime at which entry was upserted
-        bytes cid; // IPFS CID of the file containing the entry data
+        bytes cid; // Arweave id of the file containing the entry metadata
         address submitter; // Address that upserted the entry
     }
 
@@ -42,7 +42,7 @@ contract RosetteStone is TimeHelpers {
      * @param scope The contract's bytecode hash.
      * @param sig The signature of the method the entry is describing.
      * @param submitter The address that upserted the entry.
-     * @param cid The IPFS CID of the file containing the Radspec description.
+     * @param cid The Arweave id of the file containing the Radspec description.
      */
     event EntryUpserted(
         bytes32 indexed scope,
@@ -68,7 +68,7 @@ contract RosetteStone is TimeHelpers {
      * @dev Upsert a registry entry.
      * @param _scope The contract's bytecode hash.
      * @param _sig The signature of the method the entry is describing.
-     * @param _cid The IPFS CID of the file containing the description.
+     * @param _cid The Arweave id of the file containing the description.
      */
     function upsertEntry(
         bytes32 _scope,
@@ -91,7 +91,7 @@ contract RosetteStone is TimeHelpers {
      * @dev Upsert a list of entries.
      * @param _scopes The list of contract's bytecode hash.
      * @param _sigs The list of function signatures.
-     * @param _cids The list of IPFS CIDs of the file containing the description.
+     * @param _cids The list of Arweave ids of the file containing the description.
      */
     function upsertEntries(
         bytes32[] memory _scopes,
@@ -107,7 +107,7 @@ contract RosetteStone is TimeHelpers {
      * @dev Get an entry from the registry.
      * @param _scope The contract's bytecode hash.
      * @param _sig The signature of the method the entry is describing.
-     * @return The CID, submitter, and status of the entry.
+     * @return The id, submitter, and status of the entry.
      */
     function getEntry(bytes32 _scope, bytes4 _sig)
         external
